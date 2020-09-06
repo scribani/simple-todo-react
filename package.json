@@ -26,10 +26,10 @@
     "type": "git",
     "url": "git+https://github.com/scribani/simple-todo-react"
   },
-  "keywords": ["Todo-list", "React"],
+  "keywords": ["Todolist", "React"],
   "author": "Andrés Scribani",
   "license": "ISC",
-  "homepage": "https://simple-todo-react.netlify.app",
+  "homepage": "https://mis-quehaceres.netlify.app/",
   "browserslist": {
     "production": [
       ">0.2%",
