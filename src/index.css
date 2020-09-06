@@ -1,13 +1,303 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* RESETS */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*:focus {
+  outline: 3px solid #228bec;
+  outline-offset: 0;
+}
+html {
+  font: 62.5% / 1.15 sans-serif;
+}
+h1,
+h2 {
+  margin-bottom: 0;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -webkit-appearance: none;
+}
+button::-moz-focus-inner {
+  border: 0;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+}
+button,
+input {
+  overflow: visible;
+}
+input[type='text'] {
+  border-radius: 0;
+}
+body {
+  width: 100%;
+  max-width: 68rem;
+  margin: 0 auto;
+  font: 1.6rem/1.25 Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #4d4d4d;
+}
+@media screen and (min-width: 620px) {
+  body {
+    font-size: 1.9rem;
+    line-height: 1.31579;
+  }
+}
+footer {
+  font: 1.6rem Arial, sans-serif;
+  color: #bfbfbf;
+}
+footer a:link {
+  color: #83969d;
+  text-decoration: none;
+}
+footer a:visited {
+  color: #a992ac;
+}
+footer a:hover {
+  color: #465ebd;
+}
+footer a:active {
+  color: #353533;
+}
+/*END RESETS*/
+/* GLOBAL STYLES */
+.btn {
+  padding: 0.8rem 1rem 0.7rem;
+  border: 0.2rem solid #4d4d4d;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+.btn.toggle-btn {
+  border-width: 1px;
+  border-color: #d3d3d3;
+}
+.btn.toggle-btn[aria-pressed='true'] {
+  text-decoration: underline;
+  border-color: #4d4d4d;
+}
+.btn__danger {
+  color: #fff;
+  background-color: #ca3c3c;
+  border-color: #bd2130;
+}
+.btn__filter {
+  border-color: lightgrey;
+}
+.btn__primary {
+  color: #fff;
+  background-color: #000;
+}
+.btn-group {
+  display: flex;
+  justify-content: flex-end;
+  max-height: 40.85px;
+  width: 201.75px;
+  flex-shrink: 0;
+}
+.btn-group > * {
+  flex: 1 1 49%;
+}
+.btn-group > * + * {
+  margin-left: 0.8rem;
+}
+.label-wrapper {
+  margin: 0;
+  flex: 0 0 100%;
+  text-align: center;
+}
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+[class*='stack'] > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.stack-large > * + * {
+  margin-top: 2.5rem;
+}
+.stack-small {
+  margin-top: 10px;
+}
+@media screen and (min-width: 550px) {
+  .stack-large > * + * {
+    margin-top: 2.8rem;
+  }
+}
+.stack-exception {
+  margin-top: 1.2rem;
+}
+/* END GLOBAL STYLES */
+#list-heading {
+  font-size: 1em;
+}
+.todoapp {
+  background: #fff;
+  margin: 2rem 0 4rem 0;
+  padding: 1rem;
+  position: relative;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2.5rem 5rem 0 rgba(0, 0, 0, 0.1);
+}
+@media screen and (min-width: 550px) {
+  .todoapp {
+    padding: 4rem;
+  }
+}
+.todoapp > * {
+  max-width: 50rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.todoapp > form {
+  max-width: 100%;
+}
+.todoapp > h1 {
+  display: block;
+  max-width: 100%;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+.label__lg {
+  line-height: 1.01567;
+  font-weight: 300;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.input__lg {
+  padding: 1rem;
+  border: 2px solid #000;
+}
+.input__lg:focus {
+  border-color: #4d4d4d;
+  box-shadow: inset 0 0 0 2px;
+}
+[class*='__lg'] {
+  display: inline-block;
+  width: 86%;
+  font-size: 1.9rem;
+}
+[class*='__lg']:not(:last-child) {
+  margin-bottom: 1rem;
+}
+@media screen and (min-width: 620px) {
+  .filters {
+    width: 100%;
+    margin: auto;
+  }
+}
+/* Todo item styles */
+.todo {
+  display: contents;
+  max-height: 40.85px;
+}
+.todo > * {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.todo-text {
+  width: 113%;
+  padding: 0.4rem 0.8rem;
+  border: 2px solid #565656;
+}
+.todo-text:focus {
+  box-shadow: inset 0 0 0 2px;
+}
+.todo > .btn-group {
+  max-width: 158.43px;
+}
+/* CHECKBOX STYLES */
+.c-cb {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.25;
+  display: flex;
+  position: relative;
+  min-height: 30px;
+  padding-left: 40px;
+  clear: left;
+  flex-grow: 3;
+}
+.c-cb > label::before,
+.c-cb > input[type='checkbox'] {
+  box-sizing: border-box;
+  width: 30px;
+  height: 27px;
+  left: 0px;
+}
+.c-cb > input[type='checkbox'] {
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+  margin: 0;
+  opacity: 0;
+}
+.c-cb > label {
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.c-cb > label::before {
+  content: '';
+  position: absolute;
+  border: 2px solid currentColor;
+  background: transparent;
+}
+.c-cb > input[type='checkbox']:focus + label::before {
+  border-width: 4px;
+  outline: 2px solid #228bec;
+}
+.c-cb > label::after {
+  box-sizing: content-box;
+  content: '';
+  position: absolute;
+  left: 3px;
+  width: 19px;
+  height: 7px;
+  transform: rotate(-45deg);
+  border: solid;
+  border-width: 0 0 5px 5px;
+  border-top-color: transparent;
+  opacity: 0;
+  background: transparent;
+}
+.c-cb > input[type='checkbox']:checked + label::after {
+  opacity: 1;
 }
